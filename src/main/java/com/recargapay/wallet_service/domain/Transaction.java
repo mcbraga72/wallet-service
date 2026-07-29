@@ -44,7 +44,7 @@ public class Transaction {
     private Wallet wallet;
 
     @Column(name = "reference_id")
-    private Long referenceId;
+    private UUID referenceId;
 
     @Column(name = "amount", nullable = false, precision = 19, scale = 2)
     private BigDecimal amount;
@@ -65,7 +65,7 @@ public class Transaction {
             BigDecimal amount,
             TransactionType type,
             TransactionStatus status,
-            Long referenceId
+            UUID referenceId
     ) {
         if (wallet == null) throw new IllegalArgumentException("wallet is required");
         if (amount == null || amount.signum() <= 0) throw new IllegalArgumentException("amount must be > 0");

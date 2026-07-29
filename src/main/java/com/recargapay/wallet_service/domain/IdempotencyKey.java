@@ -32,7 +32,7 @@ public class IdempotencyKey {
 
     @EqualsAndHashCode.Include
     @Column(name = "idempotency_key", unique = true, nullable = false, updatable = false)
-    private String idempotencyKey;
+    private UUID idempotencyKey;
 
     @EqualsAndHashCode.Include
     @Column(name = "user_public_id", unique = true, nullable = false, updatable = false)
@@ -49,12 +49,12 @@ public class IdempotencyKey {
     private Instant createdAt;
 
     public IdempotencyKey(
-            String idempotencyKey,
+            UUID idempotencyKey,
             UUID userPublicId,
             IdempotencyKeyStatus status,
             String response
     ) {
-        if (idempotencyKey == null || idempotencyKey.isBlank()) {
+        if (idempotencyKey == null) {
             throw new IllegalArgumentException("idempotencyKey is required");
         }
 
