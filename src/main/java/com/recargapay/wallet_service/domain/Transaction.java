@@ -68,7 +68,7 @@ public class Transaction {
             UUID referenceId
     ) {
         if (wallet == null) throw new IllegalArgumentException("wallet is required");
-        if (amount == null || amount.signum() <= 0) throw new IllegalArgumentException("amount must be > 0");
+        if (amount == null || amount.signum() == 0) throw new IllegalArgumentException("amount cannot be zero");
         if (type == null) throw new IllegalArgumentException("type is required");
         if (status == null) throw new IllegalArgumentException("status is required");
 
