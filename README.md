@@ -139,14 +139,24 @@ This guarantees **exactly-once execution** under concurrency.
 
 # Observability
 
-The service includes basic observability features:
+The service includes observability features for health checks, metrics, and distributed tracing.
 
-### Metrics & Health
+### Health & Metrics
 
-* `/actuator/health`
-* `/actuator/metrics`
+- `/actuator/health` — application health status
+- `/actuator/metrics` — application metrics
+- `/actuator/prometheus` — Prometheus-formatted metrics
 
----
+### Monitoring
+
+- **Prometheus** — collects and stores application metrics
+- **Grafana** — provides dashboards for visualizing metrics
+
+### Local Monitoring & Tracing
+
+- Prometheus: `http://localhost:9090`
+- Grafana: `http://localhost:3000`
+- Zipkin: `http://localhost:9411`
 
 ### Distributed Tracing
 
