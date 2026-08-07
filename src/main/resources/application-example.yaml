@@ -10,9 +10,9 @@ spring:
       enabled: true
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/database_name
-    username: your_username
-    password: your_password
+    url: jdbc:postgresql://localhost:5432/wallet
+    username: walletuser
+    password: yourpassword
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -23,3 +23,52 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
+logging:
+  file:
+    name: /logs/wallet-service.log
+
+  pattern:
+    level: "%5p [${spring.application.name:},traceId=%X{traceId:-},spanId=%X{spanId:-}]"
+
+  level:
+    io.micrometer.tracing: INFO
+    org.springframework.web: INFO
+    root: INFO
+    zipkin2: INFO
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,Prometheus,logfile
+
+  endpoint:
+    health:
+      show-details: always
+
+    logfile:
+      external-file: /logs/application.log
+
+  metrics:
+    tags:
+      application: wallet-service
+
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+
+  security:
+    username: prometheus
+    password: prometheus
+
+  tracing:
+    enabled: true
+
+    sampling:
+      probability: 1.0
+
+  zipkin:
+    tracing:
+      endpoint: http://localhost:9411/api/v2/spans

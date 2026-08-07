@@ -6,3 +6,7 @@ target/
 
 ### Configuration files ###
 src/main/resources/application.yaml
+.env
+
+### Application's Logs ###
+logs
